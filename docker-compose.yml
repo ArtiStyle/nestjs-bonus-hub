@@ -1,0 +1,43 @@
+version: '3.5'
+services:
+  db:
+    image: postgres
+    networks:
+      - postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=bonus-hub
+    container_name: postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - postgres
+    container_name: nest-docker-postgres
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_DATABASE: bonus-hub
+      PORT: 3000
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    volumes:
+      - ./src:/app/src
+  
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  db:
