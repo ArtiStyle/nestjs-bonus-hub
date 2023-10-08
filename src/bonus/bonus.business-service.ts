@@ -1,17 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { ProduceBonusDto } from './dto/produce-bonus.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Bonus } from './entities/bonus.entity';
-import { Repository } from 'typeorm';
+import { DbTransactionFactory } from 'src/DB/db.transaction';
 import { BonusPersistenceService } from './bonus.presistence-service';
 import { BonusCount } from './dto/bonus-count.dto';
-import { DbTransactionFactory } from 'src/DB/db.transaction';
+import { ProduceBonusDto } from './dto/produce-bonus.dto';
+import { Bonus } from './entities/bonus.entity';
 
 @Injectable()
 export class BonusBusinessService {
   constructor(
-    @InjectRepository(Bonus)
-    private readonly bonusRepository: Repository<Bonus>,
     private readonly bonusPersistenceService: BonusPersistenceService,
     private transactionRunner: DbTransactionFactory,
   ) {}

@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
-
-import { BonusModule } from './bonus/bonus.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import 'dotenv/config';
+import { BonusModule } from './bonus/bonus.module';
 
 @Module({
   imports: [

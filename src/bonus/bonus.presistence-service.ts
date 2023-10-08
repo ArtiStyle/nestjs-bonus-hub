@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Bonus } from './entities/bonus.entity';
 import { EntityManager, In, Repository } from 'typeorm';
-import { ProducedBonus } from './entities/produced-bonus';
 import { BonusCount, ProducedBonusesCount } from './dto/bonus-count.dto';
+import { Bonus } from './entities/bonus.entity';
+import { ProducedBonus } from './entities/produced-bonus';
 
 @Injectable()
 export class BonusPersistenceService {
